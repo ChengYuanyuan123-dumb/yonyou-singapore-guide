@@ -2,7 +2,11 @@
 
 解压后双击 `index.html` 即可预览。网站为静态 HTML、CSS 和 JavaScript，无需安装依赖或构建。在线字体和外部地图需要网络，主要内容和教程截图随源码提供。
 
+公开网站：https://chengyuanyuan123-dumb.github.io/yonyou-singapore-guide/
+
 ## 编辑内容
+
+- `data/en.js` 管理英文界面和教程翻译。新增或更改中文文案时，在该文件同步维护对应英文。门店路线由 `app.js` 按楼层、已核实区域和铺位组合生成。
 
 - `data/dining.js` 管理美食地图。每家门店只占一个主分类。更新 `name`、`unit`、`floor`、`zone` 后，同步核对 `source`、可选的 `zoneSource` 和 `checked`。区域缺少可核实来源时把 `zone` 留空。支持 `East Wing`、`North Wing`、`West Wing` 和 `Fountain Court`。
 - `data/office.js` 管理 Wi‑Fi 名称、友空间步骤、请假说明、打印机参数与教程截图。截图位于 `assets/tutorial/`。公开指南的 Wi‑Fi 密码由办公室通过内部渠道发放。

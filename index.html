@@ -10,10 +10,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script defer src="data/office.js"></script>
   <script defer src="data/dining.js"></script>
-  <script defer src="app.js"></script>
+  <script defer src="data/en.js?v=2"></script>
+  <script defer src="app.js?v=2"></script>
 </head>
 <body>
 <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -41,7 +42,7 @@
       <img src="assets/mark.svg" width="38" height="38" alt="">
       <span><strong>Yonyou Singapore</strong><small>新人指南</small></span>
     </a>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="nav" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>导航</button>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="nav" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="sr-only">导航</span></button>
     <nav id="nav" aria-label="主要导航">
       <a href="#welcome">欢迎首页</a>
       <a href="#first-day">入职第一天</a>
@@ -49,7 +50,13 @@
       <a href="#office">Wi‑Fi 与打印机</a>
       <a href="#dining">Suntec 美食地图</a>
     </nav>
-    <button class="motion-toggle" id="motion-toggle" type="button" aria-label="暂停招牌动效" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+    <div class="head-tools">
+      <div class="language-toggle" role="group" aria-label="语言">
+        <button type="button" data-language="zh-Hans" lang="zh-Hans" aria-pressed="true">中文</button>
+        <button type="button" data-language="en-SG" lang="en-SG" aria-pressed="false">EN</button>
+      </div>
+      <button class="motion-toggle" id="motion-toggle" type="button" aria-label="暂停招牌动效" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+    </div>
   </div>
 </header>
 <main id="main" tabindex="-1">
@@ -73,7 +80,9 @@
         </div>
         <figure class="hero-image">
           <img src="assets/suntec-tower-three.jpg" alt="从街面仰望 Suntec Tower 3 的玻璃立面" fetchpriority="high">
-          <span class="photo-shade"></span>
+          <span class="photo-shade" aria-hidden="true"></span>
+          <div class="facade-light" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="level-marker"><span>LEVEL 10</span><b>#10-03</b></div>
           <div class="building-tag"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>TOWER 3</div>
           <div class="sign sign-hero" data-sign></div>
           <figcaption><span>SUNTEC TOWER THREE</span><a href="https://commons.wikimedia.org/wiki/File:Suntec_city_tower,_Singapore.jpg" target="_blank" rel="noopener">摄影 ProjectManhattan</a></figcaption>
@@ -104,6 +113,14 @@
         </ol>
       </div>
       <aside class="day-aside">
+        <div class="lift-panel" id="lift-guide" data-level="L1">
+          <h2>电梯楼层导视</h2>
+          <div class="lift-shaft">
+            <span class="lift-car" aria-hidden="true"></span>
+            <button type="button" data-lift="L10" aria-pressed="false"><b>L10</b><span>用友前台<small>#10-03</small></span></button>
+            <button type="button" data-lift="L1" aria-pressed="true"><b>L1</b><span>楼下登记</span></button>
+          </div>
+        </div>
         <div class="panel progress-panel"><h2>我的报到进度</h2><p id="checklist-count" aria-live="polite">已完成 0 / 4 项</p><progress id="checklist-progress" max="4" value="0" aria-label="报到完成进度"></progress><small>勾选保存在这台设备上。</small><button id="checklist-reset" type="button" class="button outline">重置清单</button></div>
         <div class="note"><h3>到了楼下，遇到问题</h3><p>找不到入口或二维码有问题时，可通过入职通知联系 HR。中午也可以请同事指一下茶水间、洗手间，或约一顿午饭。</p><a href="#dining">打开 Suntec 美食地图</a></div>
       </aside>
@@ -154,7 +171,12 @@
             <div class="floor-controls filter-row" id="floor-controls" role="group" aria-label="切换示意楼层"></div>
             <div class="mall-diagram" aria-label="Suntec City 商场区域示意">
               <div class="map-origin"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>从 Tower 3 出发<small>一楼大堂</small></span></div>
-              <div class="map-zones" id="map-zones"></div>
+              <div class="floor-stack">
+                <div class="floor-plate" id="floor-plate">
+                  <span class="plate-label" id="plate-label" aria-hidden="true">B1</span>
+                  <div class="map-zones" id="map-zones"></div>
+                </div>
+              </div>
             </div>
             <p class="map-caption">按商场区域与楼层定位。各区方块用于筛选。</p>
             <div id="map-current"></div>

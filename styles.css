@@ -323,3 +323,81 @@ dialog::backdrop { background: #071222d9; }
   .map-layout[data-view="list"] .focus-map { display: inline-flex; margin-bottom: 9px; }
 }
 .page h1[tabindex="-1"]:focus, .restaurant-detail h2[tabindex="-1"]:focus { outline: none; }
+
+/* The guide's illuminated architectural elements. */
+.head-tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.language-toggle { display: flex; align-items: center; padding: 3px; background: #111d31; border: 1px solid #516077; border-radius: 9px; }
+.language-toggle button { min-width: 40px; min-height: 36px; padding: 0 6px; border: 0; border-radius: 5px; background: transparent; color: #deebfb; font-size: .78rem; font-weight: 800; }
+.language-toggle button[aria-pressed="true"] { background: #f9eee3; color: #171d2d; }
+.language-toggle button:focus-visible, .lift-panel button:focus-visible, .zone-tile:focus-visible { outline-color: #f7cd99; }
+html[lang="en-SG"] .hero h1 { letter-spacing: -.066em; }
+.hero-image > img { filter: saturate(.65) contrast(1.08) brightness(.87); }
+.hero-image { box-shadow: 0 24px 66px #030817a0, 0 0 38px #c653422c; }
+.photo-shade { background: linear-gradient(0deg,#0c1728 2%,#101828d9 29%,#14283d87 63%,#0b162428), linear-gradient(110deg,#05243a88,transparent 67%,#ff704533); }
+.facade-light { position: absolute; inset: 0; pointer-events: none; }
+.facade-light i { position: absolute; inset-block: 0; left: 26%; width: 2px; height: 100%; background: linear-gradient(0deg, transparent 6%, #eb553777 35%, #ffb08b 67%, transparent 98%); transform: rotate(13deg); box-shadow: 0 0 22px #ff744b8c; opacity: .66; }
+.facade-light i:nth-child(2) { left: 59%; width: 1px; opacity: .43; }
+.facade-light i:nth-child(3) { left: 79%; opacity: .28; }
+.facade-light::after { content: ""; position: absolute; top: 35%; left: 18%; width: 67%; height: 2px; opacity: 0; background: linear-gradient(90deg, transparent, #ff8566, #fff4ca, #fc6653, transparent); box-shadow: 0 0 16px 4px #ff6a46c9; transform: rotate(-11deg); }
+.level-marker { position: absolute; top: 34%; right: 12%; padding: 7px 12px; display: grid; text-align: right; line-height: 1.2; border: 1px solid #ffad87; border-right: 3px solid #ff8a65; border-radius: 4px; color: #fff1db; background: #17182bf0; box-shadow: 0 0 26px #ff7a496e; }
+.level-marker span { font-size: .69rem; letter-spacing: .22em; font-weight: 800; }
+.level-marker b { font-size: clamp(1rem, 2vw, 1.5rem); }
+.hero-entrance .facade-light::after { animation: climb-facade 1.25s cubic-bezier(.23,.71,.3,1) both; }
+.hero-entrance .level-marker { animation: ignite-floor 1.45s ease-out both; }
+@keyframes climb-facade {
+  0% { transform: translateY(clamp(120px, 24vw, 360px)) rotate(-11deg); opacity: 0; }
+  18%, 63% { opacity: 1; }
+  100% { transform: translateY(0) rotate(-11deg); opacity: 0; }
+}
+@keyframes ignite-floor {
+  0%, 44% { opacity: .5; }
+  70% { opacity: 1; transform: translateY(-3px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.sign-hero .sign-face { color: #fff3df; text-shadow: 0 -1px #fffef9, 1px 1px #fdb489, 1px 2px #f18461, 2px 3px #e45f48, 2px 4px #cd4936, 3px 5px #bd3a31, 3px 6px #a82b2c, 4px 7px #8e2934, 4px 8px #762331, 5px 9px #662035, 5px 12px 16px #060c20e6, 0 0 26px #ff9d6eba; }
+.sign-hero .sign-glow { background: radial-gradient(ellipse closest-side,#ffc08673,#f4563d4a 46%,transparent 86%); }
+.page-banner { background: radial-gradient(ellipse at 84% 68%,#98413c62,transparent 37%), linear-gradient(115deg,#0c1728,#172b46 74%,#21233b); }
+.lift-panel { padding: 15px; border: 1px solid #354964; border-radius: 14px; background: radial-gradient(ellipse at 10% 5%,#334666,#111c30 73%); color: #fff5e6; box-shadow: 0 5px #071022,0 12px 23px #101c3033; }
+.lift-panel h2 { margin-bottom: 10px; color: #fff5e6; font-size: 1rem; }
+.lift-shaft { --stop: 51px; position: relative; display: grid; gap: 6px; }
+.lift-shaft button { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; height: 45px; padding: 2px 9px; text-align: left; color: #e1e9f1; border: 1px solid #4b5c76; border-radius: 6px; background: transparent; }
+.lift-shaft button[aria-pressed="true"] { color: #fff8ed; border-color: #ff9b7d; }
+.lift-shaft button b { min-width: 2.4em; font-size: 1rem; }
+.lift-shaft button span { font-size: .8rem; line-height: 1.15; }
+.lift-shaft button small { display: block; }
+.lift-car { position: absolute; inset: 0 0 auto; height: 45px; border-radius: 6px; transform: translateY(var(--stop)); background: linear-gradient(105deg,#a93236,#5c2634); box-shadow: 0 0 16px #ff75534f; transition: transform .33s cubic-bezier(.24,.8,.38,1); }
+.lift-panel[data-level="L10"] .lift-car { transform: translateY(0); }
+.floor-stack { padding: 8px 6px 22px; }
+.floor-plate { position: relative; z-index: 0; padding: 24px 8px 8px; border-radius: 9px; border: 1px solid #70849f; background: linear-gradient(135deg,#2f425a,#1c2c44); box-shadow: 0 4px #405873,0 5px #7b90aa,0 9px #253c59,0 10px #53708e,0 15px #152339,0 19px 18px #050a13b0; }
+.plate-label { position: absolute; top: 2px; left: 9px; color: #f9d2b6; font-size: .74rem; font-weight: 900; letter-spacing: .13em; }
+.mall-diagram { background-color: #111e34; }
+.mall-diagram.has-destination .map-origin { box-shadow: 0 0 0 1px #ffd0a7,0 0 19px #ff775a76; }
+.zone-tile.is-current { box-shadow: inset 0 0 23px #ff795254,0 0 14px #fa7c4b38; background: #74353b; }
+.map-current { box-shadow: inset 3px 0 #cd332f; }
+[data-motion="paused"] .lift-car { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-entrance .facade-light::after, .hero-entrance .level-marker { animation: none; }
+  .lift-car { transition: none; }
+}
+@media (max-width: 1050px) {
+  .head-inner { gap: 11px; }
+  #nav { gap: 10px; }
+  #nav a { font-size: .8rem; }
+}
+@media (max-width: 900px) {
+  html[lang="en-SG"] .head-inner { gap: 9px; }
+}
+@media (max-width: 640px) {
+  .head-tools { gap: 4px; }
+  .language-toggle button { min-width: 32px; padding: 0 4px; }
+  .head-inner .motion-toggle, .head-inner .menu-toggle { min-width: 36px; }
+  html[lang="en-SG"] .hero h1 { font-size: clamp(2.35rem, 10.5vw, 2.75rem); }
+  .facade-light i:nth-child(3) { display: none; }
+  .level-marker { top: 33%; padding: 4px 7px; right: 8%; }
+  .level-marker span { font-size: .54rem; }
+  .hero-entrance .facade-light::after { animation-duration: .85s; }
+  .hero-entrance .level-marker { animation-duration: 1.04s; }
+  .lift-shaft { grid-template-columns: 1fr 1fr; --stop: 0px; }
+  .lift-car { width: calc(50% - 3px); left: auto; right: 0; }
+  .lift-panel[data-level="L10"] .lift-car { transform: translateX(calc(-100% - 6px)); }
+}
