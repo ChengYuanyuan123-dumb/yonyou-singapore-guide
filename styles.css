@@ -400,13 +400,6 @@ html[lang="en-SG"] .hero h1 { font-size: clamp(2.3rem, 4.2vw, 4rem); letter-spac
   .lift-panel[data-level="L10"] .lift-car { transform: translateX(calc(-100% - 6px)); }
 }
 
-/* One lighting cue for the architectural entrance. */
-.hero-entrance .sign-hero .sign-face { animation: lift-hero-sign 1.16s ease-out both; }
-@keyframes lift-hero-sign {
-  0%, 49%, 100% { transform: translateY(0) perspective(540px) rotateX(9deg) rotateY(-12deg); filter: none; }
-  68% { transform: translateY(-7px) perspective(540px) rotateX(9deg) rotateY(-12deg); filter: drop-shadow(3px 4px 5px #f33955a3); }
-}
-
 /* Food photography forms a separate, fixed-height poster above the list. */
 .lunch-poster {
   position: relative;
@@ -469,7 +462,6 @@ html[lang="en-SG"] .hero h1 { font-size: clamp(2.3rem, 4.2vw, 4rem); letter-spac
 @media (max-width: 640px) {
   .hero-copy { padding: 22px 16px 17px; }
   .hero-meta .bring { font-size: .85rem; }
-  .hero-entrance .sign-hero .sign-face { animation-duration: 1.04s; }
   .lunch-poster { height: 112px; }
   .poster-copy { padding: 10px 12px; width: 59%; gap: 3px; }
   .poster-title { font-size: 1.3rem; }
@@ -477,92 +469,114 @@ html[lang="en-SG"] .hero h1 { font-size: clamp(2.3rem, 4.2vw, 4rem); letter-spac
   [data-food="desserts"] .food-art { --food-size: 102px; right: 20px; }
   .lunch-poster .sign-list { font-size: .58rem; top: 7px; right: 9px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero-entrance .sign-hero .sign-face { animation: none; }
-}
-
-/* Preview of the brighter lobby sign and directional level marker. */
+/* The hero sign runs independently of the one-time façade sweep. */
 .hero-image {
-  --sign-rise: -32px;
+  --sign-rise: -52px;
   --sign-tilt: perspective(540px) rotateX(9deg) rotateY(-12deg);
 }
 .hero-image .sign-hero .sign-face {
   transform: var(--sign-tilt);
-  text-shadow: 0 -1px #fff9ee, 1px 1px #ffbc9e, 2px 2px #ff9b83, 2px 3px #f96758, 3px 4px #e43a3c, 3px 5px #d71920, 4px 6px #b91c2a, 5px 7px #ab1a28, 5px 8px #921924, 6px 9px #781923, 7px 12px 14px #160a11d9, 4px 5px 11px #ff5555b8, 6px 7px 26px #f32c48a1;
+  text-shadow: 0 -1px #fff9ee, 1px 1px #ffd0ad, 2px 2px #ff9b83, 2px 3px #ff685b, 3px 4px #ed3e44, 3px 5px #d71920, 4px 6px #b91c2a, 5px 7px #ab1a28, 5px 8px #921924, 6px 9px #781923, 7px 12px 14px #160a11d9, 4px 5px 12px #ff5555da, 6px 7px 28px #f32c48bb;
 }
 .hero-image .sign-hero .sign-glow {
-  inset: -19% -6% -35%;
-  background: radial-gradient(ellipse closest-side at 57% 60%, #ff444f91, #d719205e 46%, #c9192827 75%, transparent 100%);
+  inset: -17% -5% -31%;
+  background: radial-gradient(ellipse closest-side at 57% 60%, #ff4958ad, #d719206c 47%, #c9192827 77%, transparent 100%);
 }
-[data-motion="running"] .hero-image:not(.hero-entrance) .sign-hero .sign-face {
-  animation: preview-sign-hop 5.8s ease-in-out infinite;
+[data-motion="running"] .hero-image .sign-hero .sign-face {
+  animation: hero-sign-hop 2s linear infinite;
 }
-[data-motion="running"] .hero-image:not(.hero-entrance) .sign-hero .sign-glow {
-  animation: preview-sign-bloom 5.8s ease-out infinite;
+[data-motion="running"] .hero-image .sign-hero .sign-glow {
+  animation: hero-sign-bloom 2s linear infinite;
 }
-.hero-image.hero-entrance .sign-hero .sign-face {
-  animation-name: preview-sign-entrance;
+@keyframes hero-sign-hop {
+  0% { transform: var(--sign-tilt); }
+  4% { transform: translateY(3px) var(--sign-tilt); animation-timing-function: cubic-bezier(.18,.72,.38,1); }
+  17% { transform: translateY(var(--sign-rise)) var(--sign-tilt); filter: drop-shadow(4px 6px 10px #ff4e5fcc); animation-timing-function: cubic-bezier(.5,0,.83,.54); }
+  29% { transform: translateY(3px) var(--sign-tilt); }
+  34% { transform: translateY(-7px) var(--sign-tilt); }
+  41%, 100% { transform: var(--sign-tilt); }
 }
-@keyframes preview-sign-entrance {
-  0%, 46%, 100% { transform: var(--sign-tilt); }
-  69% { transform: translateY(var(--sign-rise)) var(--sign-tilt); filter: drop-shadow(4px 6px 9px #ff4e5fce); }
-  87% { transform: translateY(3px) var(--sign-tilt); }
-}
-@keyframes preview-sign-hop {
-  0%, 61%, 90%, 100% { transform: var(--sign-tilt); }
-  65% { transform: translateY(3px) var(--sign-tilt); }
-  72% { transform: translateY(var(--sign-rise)) var(--sign-tilt); filter: drop-shadow(4px 6px 8px #ff4e5fbb); }
-  81% { transform: translateY(3px) var(--sign-tilt); }
-  85% { transform: translateY(-5px) var(--sign-tilt); }
-}
-@keyframes preview-sign-bloom {
-  0%, 70%, 100% { transform: scale(1); opacity: .78; }
-  82% { opacity: 1; }
-  93% { transform: scale(1.22); opacity: .53; }
+@keyframes hero-sign-bloom {
+  0%, 18%, 100% { transform: scale(1); opacity: .77; }
+  31% { opacity: 1; }
+  52% { transform: scale(1.23); opacity: .55; }
+  70% { transform: scale(1); opacity: .77; }
 }
 .hero-image .level-marker {
-  top: 24%;
+  top: 20%;
   right: 9%;
   display: flex;
   align-items: stretch;
   gap: 0;
-  padding: 3px;
+  padding: 13px 17px;
   text-align: left;
-  border: 1px solid #fff1dd;
-  border-radius: 6px;
+  border: 1px solid #dedbdd;
+  border-radius: 7px;
   color: #fff2dd;
-  background: #222225;
-  box-shadow: 0 0 0 3px #222225, 4px 6px 0 #7b1c28, 2px 3px 19px #e424475b;
+  background:
+    repeating-linear-gradient(0deg, #ffffff0a 0 1px, #0000000f 1px 2px, transparent 2px 4px),
+    linear-gradient(153deg, #676367 0%, #39373b 32%, #232225 73%, #3b373a 100%);
+  box-shadow:
+    inset 1px 1px 0 #ffffff82, inset -2px -2px 0 #211f22,
+    1px 2px 0 #a3a0a3, 2px 4px 0 #625e62, 3px 6px 0 #434045, 4px 8px 0 #242326,
+    7px 16px 21px #08080bc9;
+}
+.level-hardware {
+  position: absolute;
+  inset: 4px;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  pointer-events: none;
+}
+.level-hardware i {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border: 1px solid #272527;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f2f0ed, #929096 47%, #57545a 77%, #aaa6aa);
+  box-shadow: 0 1px 2px #0b090c;
+}
+.level-hardware i:nth-child(even) { justify-self: end; }
+.level-hardware i:nth-child(n+3) { align-self: end; }
+.level-hardware i::after {
+  content: "";
+  position: absolute;
+  inset: 46% 16% auto;
+  height: 1px;
+  background: #38353b;
+  transform: rotate(-38deg);
 }
 .level-marker .level-arrow {
   display: grid;
   place-items: center;
-  width: clamp(2rem, 4vw, 3.85rem);
+  width: clamp(2.15rem, 4vw, 3.85rem);
   padding: .12em .18em .18em;
-  border-radius: 3px 0 0 3px;
-  background: var(--red);
+  border: 1px solid #f28176;
+  border-radius: 4px;
+  background: linear-gradient(#e02b34, #aa1325);
+  box-shadow: inset 0 1px #ffb9a37a, inset 0 -2px #681523;
   color: #fff2dd;
-  font-size: clamp(1.7rem, 3.3vw, 3rem);
-  line-height: 1;
+  font: 800 clamp(1.7rem, 3.3vw, 3rem)/1 system-ui, sans-serif;
   letter-spacing: 0;
-  font-family: system-ui, sans-serif;
 }
-.level-label { display: grid; align-content: center; gap: 3px; padding: 7px 12px 7px 10px; }
+.level-label { display: grid; align-content: center; gap: 3px; padding-left: 11px; text-shadow: 0 2px #201e21; }
 .level-label b { white-space: nowrap; }
-.hero-image.hero-entrance .level-marker { animation-name: preview-marker-ignite; }
-@keyframes preview-marker-ignite {
-  0%, 45% { opacity: .82; }
-  70% { transform: translateY(-4px); box-shadow: 0 0 0 3px #222225, 4px 6px 0 #7b1c28, 0 0 32px #ff3249b7; }
-  100% { opacity: 1; transform: none; }
+.hero-image.hero-entrance .level-marker { animation-name: metal-marker-light; }
+@keyframes metal-marker-light {
+  0%, 45% { filter: brightness(.88); }
+  70% { filter: brightness(1.2) drop-shadow(0 0 9px #ff5a65a1); }
+  100% { filter: none; }
 }
 @media (max-width: 640px) {
-  .hero-image { --sign-rise: -21px; }
-  .hero-image .level-marker { top: 23%; right: 8%; }
-  .level-label { gap: 2px; padding: 5px 7px; }
+  .hero-image { --sign-rise: -32px; }
+  .hero-image .level-marker { top: 19%; right: 7%; padding: 10px 13px; }
+  .level-label { gap: 2px; padding-left: 7px; }
+  .level-hardware { inset: 3px; }
+  .level-hardware i { width: 7px; height: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-motion="running"] .hero-image .sign-hero .sign-face,
   [data-motion="running"] .hero-image .sign-hero .sign-glow,
-  .hero-image.hero-entrance .sign-hero .sign-face,
   .hero-image.hero-entrance .level-marker { animation: none; }
 }
