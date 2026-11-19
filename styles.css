@@ -480,3 +480,89 @@ html[lang="en-SG"] .hero h1 { font-size: clamp(2.3rem, 4.2vw, 4rem); letter-spac
 @media (prefers-reduced-motion: reduce) {
   .hero-entrance .sign-hero .sign-face { animation: none; }
 }
+
+/* Preview of the brighter lobby sign and directional level marker. */
+.hero-image {
+  --sign-rise: -32px;
+  --sign-tilt: perspective(540px) rotateX(9deg) rotateY(-12deg);
+}
+.hero-image .sign-hero .sign-face {
+  transform: var(--sign-tilt);
+  text-shadow: 0 -1px #fff9ee, 1px 1px #ffbc9e, 2px 2px #ff9b83, 2px 3px #f96758, 3px 4px #e43a3c, 3px 5px #d71920, 4px 6px #b91c2a, 5px 7px #ab1a28, 5px 8px #921924, 6px 9px #781923, 7px 12px 14px #160a11d9, 4px 5px 11px #ff5555b8, 6px 7px 26px #f32c48a1;
+}
+.hero-image .sign-hero .sign-glow {
+  inset: -19% -6% -35%;
+  background: radial-gradient(ellipse closest-side at 57% 60%, #ff444f91, #d719205e 46%, #c9192827 75%, transparent 100%);
+}
+[data-motion="running"] .hero-image:not(.hero-entrance) .sign-hero .sign-face {
+  animation: preview-sign-hop 5.8s ease-in-out infinite;
+}
+[data-motion="running"] .hero-image:not(.hero-entrance) .sign-hero .sign-glow {
+  animation: preview-sign-bloom 5.8s ease-out infinite;
+}
+.hero-image.hero-entrance .sign-hero .sign-face {
+  animation-name: preview-sign-entrance;
+}
+@keyframes preview-sign-entrance {
+  0%, 46%, 100% { transform: var(--sign-tilt); }
+  69% { transform: translateY(var(--sign-rise)) var(--sign-tilt); filter: drop-shadow(4px 6px 9px #ff4e5fce); }
+  87% { transform: translateY(3px) var(--sign-tilt); }
+}
+@keyframes preview-sign-hop {
+  0%, 61%, 90%, 100% { transform: var(--sign-tilt); }
+  65% { transform: translateY(3px) var(--sign-tilt); }
+  72% { transform: translateY(var(--sign-rise)) var(--sign-tilt); filter: drop-shadow(4px 6px 8px #ff4e5fbb); }
+  81% { transform: translateY(3px) var(--sign-tilt); }
+  85% { transform: translateY(-5px) var(--sign-tilt); }
+}
+@keyframes preview-sign-bloom {
+  0%, 70%, 100% { transform: scale(1); opacity: .78; }
+  82% { opacity: 1; }
+  93% { transform: scale(1.22); opacity: .53; }
+}
+.hero-image .level-marker {
+  top: 24%;
+  right: 9%;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 3px;
+  text-align: left;
+  border: 1px solid #fff1dd;
+  border-radius: 6px;
+  color: #fff2dd;
+  background: #222225;
+  box-shadow: 0 0 0 3px #222225, 4px 6px 0 #7b1c28, 2px 3px 19px #e424475b;
+}
+.level-marker .level-arrow {
+  display: grid;
+  place-items: center;
+  width: clamp(2rem, 4vw, 3.85rem);
+  padding: .12em .18em .18em;
+  border-radius: 3px 0 0 3px;
+  background: var(--red);
+  color: #fff2dd;
+  font-size: clamp(1.7rem, 3.3vw, 3rem);
+  line-height: 1;
+  letter-spacing: 0;
+  font-family: system-ui, sans-serif;
+}
+.level-label { display: grid; align-content: center; gap: 3px; padding: 7px 12px 7px 10px; }
+.level-label b { white-space: nowrap; }
+.hero-image.hero-entrance .level-marker { animation-name: preview-marker-ignite; }
+@keyframes preview-marker-ignite {
+  0%, 45% { opacity: .82; }
+  70% { transform: translateY(-4px); box-shadow: 0 0 0 3px #222225, 4px 6px 0 #7b1c28, 0 0 32px #ff3249b7; }
+  100% { opacity: 1; transform: none; }
+}
+@media (max-width: 640px) {
+  .hero-image { --sign-rise: -21px; }
+  .hero-image .level-marker { top: 23%; right: 8%; }
+  .level-label { gap: 2px; padding: 5px 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="running"] .hero-image .sign-hero .sign-face,
+  [data-motion="running"] .hero-image .sign-hero .sign-glow,
+  .hero-image.hero-entrance .sign-hero .sign-face,
+  .hero-image.hero-entrance .level-marker { animation: none; }
+}
