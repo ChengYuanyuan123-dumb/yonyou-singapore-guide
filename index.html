@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101C30">
+  <meta name="description" content="用友新加坡新人报到、考勤和办公设备指南，以及从 Suntec Tower 3 出发的午餐地图。">
+  <title>Yonyou Singapore 新人指南</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data/office.js"></script>
+  <script defer src="data/dining.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M5 21V6l10-3v18m0-12h4v12M3 21h18M8 9h3m-3 4h3m-3 4h3"/></symbol>
+  <symbol id="i-pass" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 16h8"/><circle cx="12" cy="10" r="3"/><path d="M9 10h6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 5V3h6v2M8 12l2 2 4-4m-6 7h7"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3M8 10v1m8-1v1m-7 4q3 3 6 0"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8q10-8 20 0M5 12q7-5 14 0m-11 4q4-3 8 0"/><circle cx="12" cy="20" r="1"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24"><path d="M5 3v7m3-7v18m3-18v7c0 3-6 3-6 0m14-7c-3 2-4 6-4 10h4m0-10v18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 5a1 1 0 0 0-1-1H6a2 2 0 0 0-2 2v9a1 1 0 0 0 1 1"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14m6-14v14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 12 7-12 7Z"/></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5M7 10h6m-3-3v6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-head">
+  <div class="head-inner wrap">
+    <a class="brand" href="#welcome">
+      <img src="assets/mark.svg" width="38" height="38" alt="">
+      <span><strong>Yonyou Singapore</strong><small>新人指南</small></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="nav" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>导航</button>
+    <nav id="nav" aria-label="主要导航">
+      <a href="#welcome">欢迎首页</a>
+      <a href="#first-day">入职第一天</a>
+      <a href="#accounts">账号与考勤</a>
+      <a href="#office">Wi‑Fi 与打印机</a>
+      <a href="#dining">Suntec 美食地图</a>
+    </nav>
+    <button class="motion-toggle" id="motion-toggle" type="button" aria-label="暂停招牌动效" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></button>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+  <section class="page" id="welcome" aria-labelledby="welcome-title">
+    <div class="hero">
+      <div class="hero-inner wrap">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span>SUNTEC CITY <i></i> TOWER 3</div>
+          <h1 id="welcome-title" tabindex="-1">欢迎来到<br><em>用友新加坡</em></h1>
+          <p class="hero-intro">第一天，先找到办公室。到了以后，按这张清单慢慢来。</p>
+          <div class="facts">
+            <div><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span><strong>09:00</strong><small>首日报到</small></span></div>
+            <div><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span><strong>Suntec Tower 3</strong><small>10 楼 · #10-03</small></span></div>
+          </div>
+          <p class="bring"><svg class="icon" aria-hidden="true"><use href="#i-pass"/></svg>随身带护照，手机准备好 Singpass</p>
+          <address>8 Temasek Boulevard, Suntec Tower 3,<br class="address-break"> #10-03, Singapore 038988</address>
+          <div class="hero-actions">
+            <a class="button primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Suntec+Tower+Three%2C+8+Temasek+Boulevard%2C+Singapore+038988&amp;travelmode=walking" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>导航到 Tower 3</a>
+            <a class="button dark-outline" href="#first-day"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>查看第一天清单</a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="assets/suntec-tower-three.jpg" alt="从街面仰望 Suntec Tower 3 的玻璃立面" fetchpriority="high">
+          <span class="photo-shade"></span>
+          <div class="building-tag"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>TOWER 3</div>
+          <div class="sign sign-hero" data-sign></div>
+          <figcaption><span>SUNTEC TOWER THREE</span><a href="https://commons.wikimedia.org/wiki/File:Suntec_city_tower,_Singapore.jpg" target="_blank" rel="noopener">摄影 ProjectManhattan</a></figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap quick">
+      <div class="section-intro"><div><p class="kicker">入职导览</p><h2>从这里开始</h2></div><p>按需要打开一项，现场照着做。</p></div>
+      <div class="quick-grid">
+        <a class="quick-card" href="#first-day"><span class="tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg></span><h3>入职第一天</h3><p>领二维码、上楼报到、录入人脸</p></a>
+        <a class="quick-card" href="#accounts"><span class="tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-scan"/></svg></span><h3>账号与考勤</h3><p>友空间、日常打卡、请假与开通账号</p></a>
+        <a class="quick-card" href="#office"><span class="tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-wifi"/></svg></span><h3>Wi‑Fi 与打印机</h3><p>办公室网络名称与 Windows 打印设置</p></a>
+        <a class="quick-card" href="#dining"><span class="tile-icon"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg></span><h3>Suntec 美食地图</h3><p>选一家店，从 Tower 3 大堂出发</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="first-day" aria-labelledby="day-title">
+    <div class="page-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>FIRST DAY</p><h1 id="day-title" tabindex="-1">入职第一天</h1><p>从一楼大楼前台领二维码，到十楼用友前台录入人脸。</p></div><div class="sign sign-small" data-sign></div></div></div>
+    <div class="wrap reading day-layout">
+      <div>
+        <div class="section-intro"><div><p class="kicker">首日报到路线</p><h2>按顺序完成四件事</h2></div></div>
+        <ol class="timeline" id="first-checklist">
+          <li><label class="timeline-item"><input type="checkbox" value="lobby"><span><b>09:00 到 Suntec Tower 3 一楼大堂</b><span>随身带护照，手机准备好 Singpass。抵达前可通过已有入职通知联系 HR。</span></span></label></li>
+          <li><label class="timeline-item"><input type="checkbox" value="qr"><span><b>到一楼大楼前台领一次性二维码</b><span>按现场要求向前台人员出示护照和 Singpass，领取二维码，凭码完成首次入楼。</span></span></label></li>
+          <li><label class="timeline-item"><input type="checkbox" value="office"><span><b>上 10 楼 #10-03，到 Yonyou Singapore 报到</b><span>出电梯后按门牌找 #10-03。</span></span></label></li>
+          <li><label class="timeline-item"><input type="checkbox" value="face"><span><b>在 10 楼用友前台录入人脸信息</b><span>首日录入完成后，第二天起可在 Tower 3 刷脸进楼。</span></span></label></li>
+        </ol>
+      </div>
+      <aside class="day-aside">
+        <div class="panel progress-panel"><h2>我的报到进度</h2><p id="checklist-count" aria-live="polite">已完成 0 / 4 项</p><progress id="checklist-progress" max="4" value="0" aria-label="报到完成进度"></progress><small>勾选保存在这台设备上。</small><button id="checklist-reset" type="button" class="button outline">重置清单</button></div>
+        <div class="note"><h3>到了楼下，遇到问题</h3><p>找不到入口或二维码有问题时，可通过入职通知联系 HR。中午也可以请同事指一下茶水间、洗手间，或约一顿午饭。</p><a href="#dining">打开 Suntec 美食地图</a></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page" id="accounts" aria-labelledby="accounts-title">
+    <div class="page-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>ACCOUNTS &amp; ATTENDANCE</p><h1 id="accounts-title" tabindex="-1">账号与考勤</h1><p>用友空间完成打卡和请假，邮箱与集团账号由 HR 协助。</p></div><div class="sign sign-small" data-sign></div></div></div>
+    <div class="wrap reading">
+      <section class="panel app-panel"><div><p class="kicker">APP 识别</p><h2>友空间私有版</h2><p>认准红色图标和右上角的「私有版」标识。可用手机号与短信验证码登录。</p><p>友空间用于打卡、请假、群组沟通、传输文件、查看共享文档和提交工单。</p></div><div id="app-image"></div></section>
+      <div class="attendance-times"><div><span>工作日签到</span><strong>09:00</strong></div><div><span>工作日签退</span><strong>18:00</strong></div></div>
+      <section class="guide-section"><div class="section-intro"><div><p class="kicker">友空间私有版</p><h2>日常打卡</h2></div></div><ol class="steps" id="attendance-steps"></ol></section>
+      <div class="office-grid">
+        <section class="panel"><h2>遇到问题</h2><ol class="simple-list"><li>确认友空间已获得定位权限。</li><li>在办公室检查是否接入员工 Wi‑Fi，并确认已切换到新加坡公司。</li><li>仍有问题时联系 HR。第一天账号还未开通时，请联系 HR 确认当天考勤如何登记。</li></ol><p>补卡次数和时限以 HR 确认的现行规则为准。</p></section>
+        <section class="panel"><h2>请假</h2><p id="leave-steps"></p></section>
+        <section class="panel"><h2>公司邮箱</h2><p>请联系 HR 开通公司邮箱，并确认生效时间。</p></section>
+        <section class="panel"><h2>集团账号</h2><p>如岗位需要集团账号，请联系 HR 确认开通方式</p></section>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="office" aria-labelledby="office-title">
+    <div class="page-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>OFFICE SETUP</p><h1 id="office-title" tabindex="-1">Wi‑Fi 与打印机</h1><p>查办公室网络名称，按所在办公区域添加打印机。</p></div><div class="sign sign-small" data-sign></div></div></div>
+    <div class="wrap reading">
+      <section class="guide-section"><div class="section-intro"><div><p class="kicker">办公室网络</p><h2>连接 Wi‑Fi</h2></div></div><div id="wifi-cards" class="office-grid"></div></section>
+      <section class="guide-section">
+        <div class="section-intro"><div><p class="kicker">Windows 设置</p><h2>添加打印机</h2></div></div>
+        <div id="printer-tabs" class="filter-row" role="group" aria-label="办公区域"></div>
+        <div id="printer-spec" class="panel printer-spec"></div>
+        <details class="tutorial" id="printer-tutorial"><summary>展开 Windows 图文教程<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary><ol class="steps" id="printer-steps"></ol></details>
+        <p class="note">使用 Mac 时，请联系办公室 IT 或行政取得适用设置。</p>
+      </section>
+    </div>
+  </section>
+
+  <section class="page" id="dining" aria-labelledby="dining-title">
+    <div class="page-banner dining-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>LUNCH AT SUNTEC CITY</p><h1 id="dining-title" tabindex="-1">Suntec 美食地图</h1><p>从 Tower 3 一楼大堂出发，按口味选店，跟着楼层和铺位走。</p></div><div class="sign sign-small map-mobile-sign" data-sign></div></div></div>
+    <div class="wrap dining-body">
+      <div class="filters">
+        <div id="category-filters" class="filter-row" role="group" aria-label="主分类"></div>
+        <div class="filter-secondary"><div id="tag-filters" class="filter-row" role="group" aria-label="口味标签"></div><label class="search-label"><span class="sr-only">搜索门店或铺位</span><input type="search" id="restaurant-search" placeholder="搜索店名或铺位"></label></div>
+      </div>
+      <div class="view-toggle filter-row" role="group" aria-label="切换地图与门店列表"><button type="button" data-view="map" aria-pressed="true">地图</button><button type="button" data-view="list" aria-pressed="false">门店列表</button></div>
+      <div class="map-layout" id="map-layout" data-view="map">
+        <div class="map-column">
+          <div class="map-panel">
+            <div class="map-head"><div><p class="kicker">Suntec City Mall</p><h2>楼层示意</h2></div><a href="https://maps.inmapz.com/suntec-city-mall-3484817437" target="_blank" rel="noopener" class="button outline">查看室内楼层图</a></div>
+            <div class="floor-controls filter-row" id="floor-controls" role="group" aria-label="切换示意楼层"></div>
+            <div class="mall-diagram" aria-label="Suntec City 商场区域示意">
+              <div class="map-origin"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>从 Tower 3 出发<small>一楼大堂</small></span></div>
+              <div class="map-zones" id="map-zones"></div>
+            </div>
+            <p class="map-caption">按商场区域与楼层定位。各区方块用于筛选。</p>
+            <div id="map-current"></div>
+          </div>
+          <div id="restaurant-detail" aria-label="当前门店详情"></div>
+        </div>
+        <aside class="list-panel" aria-label="门店列表">
+          <div class="list-banner"><div><p class="eyebrow"><span></span>SUNTEC CITY</p><h2>门店列表</h2></div><div class="sign sign-list" data-sign></div></div>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+          <div class="list-items" id="restaurant-list"></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap footer-inner"><div><b>Yonyou Singapore 新人指南</b><small>8 Temasek Boulevard · Suntec Tower 3 · #10-03</small></div><div class="footer-links"><a href="https://www.yonyou.com.sg/contact-us/" target="_blank" rel="noopener">公司地址来源</a><a href="https://sunteccity.com.sg/store_categories/dining?subCategoryID=5" target="_blank" rel="noopener">商场餐饮目录</a><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">照片许可 CC BY-SA 3.0</a></div></div></footer>
+<dialog id="image-dialog" aria-labelledby="image-title"><div class="dialog-head"><h2 id="image-title">操作截图</h2><button class="button outline" type="button" id="image-close" autofocus><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>关闭</button></div><div class="dialog-image"><img alt=""></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript><div class="note wrap">请开启 JavaScript 使用勾选、复制、截图预览和美食地图筛选。</div></noscript>
+</body>
+</html>
+
