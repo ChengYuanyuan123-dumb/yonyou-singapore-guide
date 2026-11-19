@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101C30">
+  <meta name="theme-color" content="#FAF8F5">
   <meta name="description" content="用友新加坡新人报到、考勤和办公设备指南，以及从 Suntec Tower 3 出发的午餐地图。">
   <title>Yonyou Singapore 新人指南</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script defer src="data/office.js"></script>
   <script defer src="data/dining.js"></script>
-  <script defer src="data/en.js?v=2"></script>
-  <script defer src="app.js?v=2"></script>
+  <script defer src="data/en.js?v=3"></script>
+  <script defer src="app.js?v=3"></script>
 </head>
 <body>
 <svg class="svg-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -62,20 +62,22 @@
 <main id="main" tabindex="-1">
   <section class="page" id="welcome" aria-labelledby="welcome-title">
     <div class="hero">
-      <div class="hero-inner wrap">
+      <div class="hero-inner">
         <div class="hero-copy">
           <div class="eyebrow"><span></span>SUNTEC CITY <i></i> TOWER 3</div>
           <h1 id="welcome-title" tabindex="-1">欢迎来到<br><em>用友新加坡</em></h1>
-          <p class="hero-intro">第一天，先找到办公室。到了以后，按这张清单慢慢来。</p>
           <div class="facts">
             <div><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span><strong>09:00</strong><small>首日报到</small></span></div>
             <div><svg class="icon" aria-hidden="true"><use href="#i-building"/></svg><span><strong>Suntec Tower 3</strong><small>10 楼 · #10-03</small></span></div>
           </div>
-          <p class="bring"><svg class="icon" aria-hidden="true"><use href="#i-pass"/></svg>随身带护照，手机准备好 Singpass</p>
-          <address>8 Temasek Boulevard, Suntec Tower 3,<br class="address-break"> #10-03, Singapore 038988</address>
           <div class="hero-actions">
             <a class="button primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Suntec+Tower+Three%2C+8+Temasek+Boulevard%2C+Singapore+038988&amp;travelmode=walking" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>导航到 Tower 3</a>
             <a class="button dark-outline" href="#first-day"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>查看第一天清单</a>
+          </div>
+          <div class="hero-meta">
+            <p class="hero-intro">第一天，先找到办公室。到了以后，按这张清单慢慢来。</p>
+            <p class="bring"><svg class="icon" aria-hidden="true"><use href="#i-pass"/></svg>随身带护照，手机准备好 Singpass</p>
+            <address>8 Temasek Boulevard, Suntec Tower 3,<br class="address-break"> #10-03, Singapore 038988</address>
           </div>
         </div>
         <figure class="hero-image">
@@ -157,14 +159,25 @@
   </section>
 
   <section class="page" id="dining" aria-labelledby="dining-title">
-    <div class="page-banner dining-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>LUNCH AT SUNTEC CITY</p><h1 id="dining-title" tabindex="-1">Suntec 美食地图</h1><p>从 Tower 3 一楼大堂出发，按口味选店，跟着楼层和铺位走。</p></div><div class="sign sign-small map-mobile-sign" data-sign></div></div></div>
+    <div class="page-banner dining-banner"><div class="wrap banner-inner"><div><p class="eyebrow"><span></span>LUNCH AT SUNTEC CITY</p><h1 id="dining-title" tabindex="-1">Suntec 美食地图</h1><p>从 Tower 3 一楼大堂出发，按口味选店，跟着楼层和铺位走。</p></div></div></div>
     <div class="wrap dining-body">
       <div class="filters">
         <div id="category-filters" class="filter-row" role="group" aria-label="主分类"></div>
         <div class="filter-secondary"><div id="tag-filters" class="filter-row" role="group" aria-label="口味标签"></div><label class="search-label"><span class="sr-only">搜索门店或铺位</span><input type="search" id="restaurant-search" placeholder="搜索店名或铺位"></label></div>
       </div>
-      <div class="view-toggle filter-row" role="group" aria-label="切换地图与门店列表"><button type="button" data-view="map" aria-pressed="true">地图</button><button type="button" data-view="list" aria-pressed="false">门店列表</button></div>
       <div class="map-layout" id="map-layout" data-view="map">
+        <div class="lunch-poster" id="lunch-poster" data-food="coffee">
+          <div class="poster-building" aria-hidden="true"></div>
+          <div class="poster-halo" aria-hidden="true"></div>
+          <div class="food-art" aria-hidden="true"></div>
+          <div class="poster-copy">
+            <p class="poster-start"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>从 Tower 3 出发</span></p>
+            <p class="poster-title" id="poster-title">午餐在 Suntec</p>
+            <p class="poster-zone" id="poster-zone" hidden></p>
+          </div>
+          <div class="sign sign-list" data-sign></div>
+        </div>
+        <div class="view-toggle filter-row" role="group" aria-label="切换地图与门店列表"><button type="button" data-view="map" aria-pressed="true">地图</button><button type="button" data-view="list" aria-pressed="false">门店列表</button></div>
         <div class="map-column">
           <div class="map-panel">
             <div class="map-head"><div><p class="kicker">Suntec City Mall</p><h2>楼层示意</h2></div><a href="https://maps.inmapz.com/suntec-city-mall-3484817437" target="_blank" rel="noopener" class="button outline">查看室内楼层图</a></div>
@@ -184,7 +197,7 @@
           <div id="restaurant-detail" aria-label="当前门店详情"></div>
         </div>
         <aside class="list-panel" aria-label="门店列表">
-          <div class="list-banner"><div><p class="eyebrow"><span></span>SUNTEC CITY</p><h2>门店列表</h2></div><div class="sign sign-list" data-sign></div></div>
+          <div class="list-banner"><h2>门店列表</h2></div>
           <p id="result-count" class="result-count" aria-live="polite"></p>
           <div class="list-items" id="restaurant-list"></div>
         </aside>

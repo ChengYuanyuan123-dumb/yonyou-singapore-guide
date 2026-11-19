@@ -119,10 +119,6 @@ document.addEventListener("click", event => {
 showPage();
 if (location.hash && location.hash !== "#main") requestAnimationFrame(() => window.scrollTo(0, 0));
 
-const mobileSign = document.createElement("div");
-mobileSign.className = "sign sign-hero-top";
-mobileSign.dataset.sign = "";
-$(".hero-copy").prepend(mobileSign);
 $$("[data-sign]").forEach(sign => {
   sign.setAttribute("aria-hidden", "true");
   sign.innerHTML = '<span class="sign-glow"></span><span class="sign-face"><span>YONYOU</span><span>SINGAPORE</span></span>';
@@ -136,7 +132,9 @@ function updateMotion() {
   document.documentElement.dataset.motion = paused ? "paused" : "running";
   if (paused) {
     $(".hero-image").classList.remove("hero-entrance");
-    $("#floor-plate").getAnimations().forEach(animation => animation.cancel());
+    for (const element of $$("#floor-plate, .food-art, .poster-halo")) {
+      element.getAnimations().forEach(animation => animation.cancel());
+    }
   }
   motionButton.disabled = reducedMotion.matches;
   motionButton.setAttribute("aria-pressed", String(paused));
@@ -317,6 +315,15 @@ const dining = [...(window.DINING ?? [])].sort((first, second) =>
   (featured.get(first.name) ?? featured.size) - (featured.get(second.name) ?? featured.size)
 );
 const categories = ["咖啡", "午餐·中餐", "午餐·西餐", "午餐·日本菜", "简餐", "甜品"];
+const foodArt = {
+  "": "coffee",
+  "咖啡": "coffee",
+  "午餐·中餐": "chinese",
+  "午餐·西餐": "western",
+  "午餐·日本菜": "japanese",
+  "简餐": "quick-meals",
+  "甜品": "desserts"
+};
 const filterTags = ["港式", "新加坡本地菜"];
 const floors = ["B1", "L1", "L2", "L3", "L4"];
 const zones = [
@@ -415,6 +422,34 @@ function renderDetail(restaurant) {
     <p>${external(mapSource, t("商场分区资料"))} · ${external(layoutSource, t("Tower 3 与 East Wing 布局来源"))}</p></details>
   </article>`;
 }
+const poster = $("#lunch-poster");
+const posterFood = $(".food-art", poster);
+const posterHalo = $(".poster-halo", poster);
+function updateLunchPoster() {
+  const categoryChanged = poster.dataset.category !== state.category;
+  poster.dataset.category = state.category;
+  poster.dataset.food = foodArt[state.category];
+  $("#poster-title").textContent = t(state.category || "午餐在 Suntec");
+  const zone = state.selected?.zone;
+  $("#poster-zone").textContent = zone || "";
+  $("#poster-zone").hidden = !zone;
+  if (!categoryChanged || currentPage !== "dining" || document.documentElement.dataset.motion !== "running") return;
+
+  for (const element of [posterFood, posterHalo]) {
+    element.getAnimations().forEach(animation => animation.cancel());
+  }
+  posterFood.animate([
+    { transform: "translateY(6px) scale(.96)", opacity: .78 },
+    { transform: "translateY(-8px) scale(1.02)", opacity: 1, offset: .48 },
+    { transform: "translateY(0) scale(1)", opacity: 1 }
+  ], { duration: 460, easing: "cubic-bezier(.21,.61,.35,1)" });
+  posterHalo.animate([
+    { transform: "scale(.8)", opacity: .3 },
+    { transform: "scale(1)", opacity: .86, offset: .4 },
+    { transform: "scale(1.28)", opacity: .3 }
+  ], { duration: 520, easing: "ease-out" });
+}
+
 function renderDining({ list = true, preserveSelection = false } = {}) {
   const base = baseMatches();
   const restaurants = visibleRestaurants(base);
@@ -468,6 +503,7 @@ function renderDining({ list = true, preserveSelection = false } = {}) {
     ? `<div class="map-current"><strong>${escapeHtml(selected.floor)} · ${escapeHtml(selected.unit)}</strong>　${escapeHtml(selected.name)}</div>`
     : "";
   renderDetail(selected);
+  updateLunchPoster();
 }
 $("#category-filters").addEventListener("click", event => {
   const button = event.target.closest("[data-category]");

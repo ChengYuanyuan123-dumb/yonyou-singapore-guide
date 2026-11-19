@@ -10,6 +10,7 @@
 
 - `data/dining.js` 管理美食地图。每家门店只占一个主分类。更新 `name`、`unit`、`floor`、`zone` 后，同步核对 `source`、可选的 `zoneSource` 和 `checked`。区域缺少可核实来源时把 `zone` 留空。支持 `East Wing`、`North Wing`、`West Wing` 和 `Fountain Court`。
 - `data/office.js` 管理 Wi‑Fi 名称、友空间步骤、请假说明、打印机参数与教程截图。截图位于 `assets/tutorial/`。公开指南的 Wi‑Fi 密码由办公室通过内部渠道发放。
+- `assets/lunch-cutouts.webp` 是午餐海报使用的透底食物示意图。拼图素材为 3 列 × 2 行，顺序是咖啡、中餐、西餐、日本菜、简餐、甜品。
 - `index.html` 管理报到地址、时间、首日清单、账号开通提示和导航。样式在 `styles.css`，交互在 `app.js`。
 - 2026-11-19 核对门店 60 家。咖啡、中餐、西餐、日本菜、简餐、甜品各 10 家。48 家附已核实分区，12 家按楼层和铺位查找。楼层示意用于定位区域，进入商场后可看现场导视或打开室内楼层图。
 

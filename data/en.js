@@ -187,6 +187,7 @@ window.ENGLISH = {
   "咖啡与烘焙": "Coffee and baked goods",
   "咖啡外带": "Takeaway coffee",
   "咖啡与简食": "Coffee and quick bites",
+  "午餐在 Suntec": "Lunch at Suntec",
   "南洋咖啡与吐司": "Nanyang coffee and toast",
   "午餐·中餐": "Chinese",
   "小笼包与中式料理": "Xiao long bao and Chinese dishes",
